@@ -88,7 +88,7 @@ export const ProjectsSection = () => {
         </h2>
 
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          A mix of UI/UX, motion, and visual work—built fast, iterated hard.
+          A mix of proffesional design and creative work. Built fast, iterated hard.
         </p>
 
         <div className="flex flex-wrap justify-center gap-4 mb-12">
