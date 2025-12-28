@@ -1,7 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { NotFound } from "./pages/NotFound";
+import Games from "./pages/Games";
+import AlienReflex from "./pages/AlienReflex";
 import { Toaster } from "@/components/ui/toaster";
+import SignalNoise from "./pages/SignalNoise";
+
 
 function App() {
   return (
@@ -10,6 +14,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
+          <Route path="/games/signal-noise" element={<SignalNoise />} />
+          <Route path="/games" element={<Games />} />
+          <Route path="/games/alien-reflex" element={<AlienReflex />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

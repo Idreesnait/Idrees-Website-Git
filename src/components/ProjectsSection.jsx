@@ -2,6 +2,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 
+
 const projects = [
   // ===== MOTION =====
   {
@@ -37,58 +38,96 @@ const projects = [
     tags: ["UI/UX", "Figma", "Redesign"],
     category: "ui/ux",
     demoUrl:
-      "https://www.figma.com/design/Hb0vEbKAkkvYvHQ0YfIMWi/Buff-Portal-redesign?node-id=0-1&p=f&t=6vGCfwlRFuVDnJ9B-0",
+      "https://www.figma.com/design/Hb0vEbKAkkvYvHQ0YfIMWi/Buff-Portal-redesign",
     githubUrl: "",
   },
 
-  // ===== VISUAL ART / DRAWINGS =====
-  { id: 4, image: "/d1.jpeg", category: "visual art" },
-  { id: 5, image: "/d2.jpeg", category: "visual art" },
-  { id: 6, image: "/d3.jpeg", category: "visual art" },
-  { id: 7, image: "/d4.jpeg", category: "visual art" },
-  { id: 8, image: "/d5.jpeg", category: "visual art" },
-
-  // ===== GRAPHIC DESIGN (FLATIRONS) =====
+  // ===== 3D =====
   {
     id: 9,
-    title: "Flatirons Church – Graphic Design",
-    description: "Graphic design work created for Flatirons Church.",
-    image: "/GD.jpeg",
-    tags: ["Graphic Design"],
-    category: "visual art",
+    title: "3D Model – Personalized Mango Energy Drink",
+    description:
+      "A 3D modeled concept can exploring form, materials, and branding presence.",
+    image: "/m1.jpeg",
+    tags: ["3D", "Modeling"],
+    category: "3d",
     demoUrl: "",
     githubUrl: "",
   },
   {
     id: 10,
-    title: "Flatirons Church – Graphic Design",
-    description: "Graphic design work created for Flatirons Church.",
-    image: "/GD2.jpeg",
-    tags: ["Graphic Design"],
-    category: "visual art",
+    title: "Packaging Die Cut – Mango Energy Drink",
+    description:
+      "Die cut layout and packaging structure exploration for a branded multi-pack concept.",
+    image: "/m2.jpg",
+    tags: ["3D", "Packaging"],
+    category: "3d",
     demoUrl: "",
     githubUrl: "",
   },
+  {
+    id: 11,
+    title: "Graph Art – Generated From 3D Model",
+    description:
+      "Graphic art experimentation derived from the 3D model’s shapes and contours.",
+    image: "/m3.jpeg",
+    tags: ["3D", "Graphic Art"],
+    category: "3d",
+    demoUrl: "",
+    githubUrl: "",
+  },
+
+  // ===== GAMES =====
+  {
+    id: 12,
+    title: "Decision Engine",
+    description:
+      "An interactive product-decision simulator that lets you allocate limited effort each week and watch a complex system respond through tradeoffs, feedback loops, and unintended consequences.",
+    image: "/alien-reflex.jpg",
+    tags: ["Game", "React", "Interaction"],
+    category: "games",
+    demoUrl: "/games/alien-reflex",
+    githubUrl: "",
+  },
+  
+  {
+  id: 100,
+  title: "Signal vs Noise — Product Decision Game",
+  description:
+    "A fast pattern-recognition game where you react to metric shifts and separate meaningful signal from random noise. Includes scoring + post-round analysis UI.",
+  image: "/signalnoise.jpg", // use any placeholder image for now
+  tags: ["Game", "Product Thinking", "UI/UX"],
+  category: "games",
+  demoUrl: "/games/signal-noise",
+  githubUrl: "",
+},
+
+
+  // ===== VISUAL ART =====
+  { id: 4, image: "/d1.jpeg", category: "visual art" },
+  { id: 5, image: "/d2.jpeg", category: "visual art" },
+  { id: 7, image: "/D7.jpeg.jpeg", category: "visual art" },
 ];
 
-const categories = ["all", "ui/ux", "motion", "3d", "games", "visual art"];
+const categories = ["featured", "ui/ux", "motion", "3d", "games", "visual art"];
 
 export const ProjectsSection = () => {
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeCategory, setActiveCategory] = useState("featured");
 
-  const filteredProjects = projects.filter(
-    (p) => activeCategory === "all" || p.category === activeCategory
-  );
+  const filteredProjects = projects.filter((p) => {
+    if (activeCategory === "featured") return false;
+    return p.category === activeCategory;
+  });
 
   return (
     <section id="projects" className="py-24 px-4 relative">
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Featured <span className="text-primary">Projects</span>
+          Creative <span className="text-primary">Projects</span>
         </h2>
 
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          A mix of proffesional design and creative work. Built fast, iterated hard.
+          A mix of professional design and creative work. Built fast, iterated hard.
         </p>
 
         <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -114,7 +153,6 @@ export const ProjectsSection = () => {
               key={project.id}
               className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover"
             >
-              {/* Portrait-friendly image frame: shows full 8x11-ish art */}
               <div className="aspect-[4/5] overflow-hidden bg-secondary/20">
                 <img
                   src={project.image}
@@ -123,10 +161,9 @@ export const ProjectsSection = () => {
                 />
               </div>
 
-              {/* Only show the content block if there is content */}
               {(project.title ||
                 project.description ||
-                (project.tags && project.tags.length > 0) ||
+                project.tags?.length ||
                 project.demoUrl ||
                 project.githubUrl) && (
                 <div className="p-6">
@@ -143,32 +180,41 @@ export const ProjectsSection = () => {
                     </div>
                   ) : null}
 
-                  {project.title ? (
+                  {project.title && (
                     <h3 className="text-xl font-semibold mb-1">
                       {project.title}
                     </h3>
-                  ) : null}
+                  )}
 
-                  {project.description ? (
+                  {project.description && (
                     <p className="text-muted-foreground text-sm mb-4">
                       {project.description}
                     </p>
-                  ) : null}
+                  )}
 
                   {(project.demoUrl || project.githubUrl) && (
                     <div className="flex space-x-3">
-                      {project.demoUrl ? (
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                        >
-                          <ExternalLink size={20} />
-                        </a>
-                      ) : null}
+                      {project.demoUrl && (
+                        project.demoUrl.startsWith("/") ? (
+                          <a
+                            href={project.demoUrl}
+                            className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                          >
+                            <ExternalLink size={20} />
+                          </a>
+                        ) : (
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                          >
+                            <ExternalLink size={20} />
+                          </a>
+                        )
+                      )}
 
-                      {project.githubUrl ? (
+                      {project.githubUrl && (
                         <a
                           href={project.githubUrl}
                           target="_blank"
@@ -177,7 +223,7 @@ export const ProjectsSection = () => {
                         >
                           <Github size={20} />
                         </a>
-                      ) : null}
+                      )}
                     </div>
                   )}
                 </div>
