@@ -2,7 +2,6 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 
-
 const projects = [
   // ===== MOTION =====
   {
@@ -45,7 +44,7 @@ const projects = [
   // ===== 3D =====
   {
     id: 9,
-    title: "3D Model – Personalized Mango Energy Drink",
+    title: "Mango Energy Drink",
     description:
       "A 3D modeled concept can exploring form, materials, and branding presence.",
     image: "/m1.jpeg",
@@ -56,10 +55,10 @@ const projects = [
   },
   {
     id: 10,
-    title: "Packaging Die Cut – Mango Energy Drink",
+    title: "Packaging Die Cut | Mango Energy Drink",
     description:
       "Die cut layout and packaging structure exploration for a branded multi-pack concept.",
-    image: "/m2.jpg",
+    image: "/m2.jpeg",
     tags: ["3D", "Packaging"],
     category: "3d",
     demoUrl: "",
@@ -67,7 +66,7 @@ const projects = [
   },
   {
     id: 11,
-    title: "Graph Art – Generated From 3D Model",
+    title: "Graph Art | Generated From 3D Model",
     description:
       "Graphic art experimentation derived from the 3D model’s shapes and contours.",
     image: "/m3.jpeg",
@@ -83,33 +82,53 @@ const projects = [
     title: "Decision Engine",
     description:
       "An interactive product-decision simulator that lets you allocate limited effort each week and watch a complex system respond through tradeoffs, feedback loops, and unintended consequences.",
-    image: "/alien-reflex.jpg",
+    image: "/g3.jpeg",
     tags: ["Game", "React", "Interaction"],
     category: "games",
     demoUrl: "/games/alien-reflex",
     githubUrl: "",
   },
-  
-  {
-  id: 100,
-  title: "Signal vs Noise — Product Decision Game",
-  description:
-    "A fast pattern-recognition game where you react to metric shifts and separate meaningful signal from random noise. Includes scoring + post-round analysis UI.",
-  image: "/signalnoise.jpg", // use any placeholder image for now
-  tags: ["Game", "Product Thinking", "UI/UX"],
-  category: "games",
-  demoUrl: "/games/signal-noise",
-  githubUrl: "",
-},
 
+  {
+    id: 100,
+    title: "Survivor Arena",
+    description:
+      "Survivor Arena is a top-down survival shooter where you dodge swarms while auto-shooting, collecting drops, and building upgrades between levels. Survive longer, stack buffs/abilities, and chase your run’s high score.",
+    image: "/g1.jpeg", // use any placeholder image for now
+    tags: ["Game", "Product Thinking", "UI/UX"],
+    category: "games",
+    demoUrl: "/games/signal-noise",
+    githubUrl: "",
+  },
+
+  // ===== WRITING =====
+  {
+    id: 200,
+    title: "Theory of Directed Bias in Ethical Systems",
+    description:
+      "PHIL 1000 essay exploring fairness through self-interest, drawing on Rawls’ Veil of Ignorance and structured uncertainty.",
+    image: "/w1.jpeg", 
+    tags: ["Writing", "Philosophy", "Ethics"],
+    category: "writings",
+    demoUrl: "/writings/directed-bias",
+    githubUrl: "",
+  },
 
   // ===== VISUAL ART =====
   { id: 4, image: "/d1.jpeg", category: "visual art" },
   { id: 5, image: "/d2.jpeg", category: "visual art" },
-  { id: 7, image: "/D7.jpeg.jpeg", category: "visual art" },
+  { id: 7, image: "/d7.jpeg", category: "visual art" },
 ];
 
-const categories = ["featured", "ui/ux", "motion", "3d", "games", "visual art"];
+const categories = [
+  "featured",
+  "ui/ux",
+  "motion",
+  "3d",
+  "games",
+  "writings",
+  "visual art",
+];
 
 export const ProjectsSection = () => {
   const [activeCategory, setActiveCategory] = useState("featured");
@@ -127,7 +146,7 @@ export const ProjectsSection = () => {
         </h2>
 
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          A mix of professional design and creative work. Built fast, iterated hard.
+          A mix of professional design and creative work
         </p>
 
         <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -146,6 +165,10 @@ export const ProjectsSection = () => {
             </button>
           ))}
         </div>
+
+        <p className="text-center text-xs text-muted-foreground mb-12">
+          More projects on the way — new work added weekly.
+        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
@@ -194,8 +217,8 @@ export const ProjectsSection = () => {
 
                   {(project.demoUrl || project.githubUrl) && (
                     <div className="flex space-x-3">
-                      {project.demoUrl && (
-                        project.demoUrl.startsWith("/") ? (
+                      {project.demoUrl &&
+                        (project.demoUrl.startsWith("/") ? (
                           <a
                             href={project.demoUrl}
                             className="text-foreground/80 hover:text-primary transition-colors duration-300"
@@ -211,8 +234,7 @@ export const ProjectsSection = () => {
                           >
                             <ExternalLink size={20} />
                           </a>
-                        )
-                      )}
+                        ))}
 
                       {project.githubUrl && (
                         <a

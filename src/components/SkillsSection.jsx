@@ -3,10 +3,10 @@ import { cn } from "@/lib/utils";
 
 const skills = [
   // Frontend
-  { name: "HTML", level: 80, category: "frontend" },
-  { name: "JavaScript", level: 60, category: "frontend" },
-  { name: "TypeScript", level: 70, category: "frontend" },
-  { name: "Framer", level: 90, category: "frontend" },
+  { name: "HTML", level: 70, category: "frontend" },
+  { name: "JavaScript", level: 70, category: "frontend" },
+  { name: "TypeScript", level: 50, category: "frontend" },
+  { name: "Framer", level: 80, category: "frontend" },
 
   // Backend
   { name: "SQL", level: 40, category: "backend" },
@@ -14,9 +14,9 @@ const skills = [
   { name: "C#", level: 30, category: "backend" },
 
   // Animation / Editing
-  { name: "Procreate Dreams", level: 90, category: "animation" },
-  { name: "After Effects", level: 60, category: "animation" },
-  { name: "Premiere Pro", level: 60, category: "animation" },
+  { name: "Procreate Dreams", level: 80, category: "animation" },
+  { name: "After Effects", level: 70, category: "animation" },
+  { name: "Premiere Pro", level: 70, category: "animation" },
   { name: "CapCut", level: 100, category: "animation" },
 
   // Fine Art / Design
@@ -26,16 +26,17 @@ const skills = [
   { name: "Photoshop", level: 80, category: "fine art" },
   { name: "InDesign", level: 85, category: "fine art" },
   { name: "Lightroom", level: 90, category: "fine art" },
-  { name: "Adobe Express", level: 100, category: "fine art" },
+  { name: "Adobe Express", level: 90, category: "fine art" },
   { name: "Canva", level: 50, category: "fine art" },
   { name: "Prototyping", level: 80, category: "fine art" },
 
   // Tools / 3D
-  { name: "GitHub", level: 100, category: "tools" },
+  { name: "GitHub", level: 90, category: "tools" },
   { name: "Figma", level: 95, category: "tools" },
   { name: "SOLIDWORKS (CSWA)", level: 90, category: "tools" },
   { name: "Onshape", level: 80, category: "tools" },
   { name: "SketchUp", level: 90, category: "tools" },
+  { name: "Exel", level: 70, category: "tools" },
 ];
 
 const categories = ["all", "frontend", "backend", "animation", "fine art", "tools"];
