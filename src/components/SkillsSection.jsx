@@ -9,8 +9,8 @@ const skills = [
   { name: "Framer", level: 80, category: "frontend" },
 
   // Backend
-  { name: "SQL", level: 40, category: "backend" },
-  { name: "C++", level: 50, category: "backend" },
+  { name: "SQL", level: 20, category: "backend" },
+  { name: "C++", level: 40, category: "backend" },
   { name: "C#", level: 30, category: "backend" },
 
   // Animation / Editing
