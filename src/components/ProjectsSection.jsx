@@ -3,6 +3,20 @@ import { cn } from "@/lib/utils";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 
 const projects = [
+  // ===== FEATURED =====
+{
+    id: 300,
+    title: "Survivor Arena",
+    description:
+      "Survivor Arena is a top-down survival shooter where you dodge swarms while auto-shooting, collecting drops, and building upgrades between levels. Survive longer, stack buffs/abilities, and chase your run’s high score.",
+    image: "/g1.jpeg", 
+    tags: ["Game", "Product Thinking", "UI/UX"],
+    category: "Featured",
+    demoUrl: "/games/signal-noise",
+    githubUrl: "",
+  },
+
+
   // ===== MOTION =====
   {
     id: 1,
@@ -107,7 +121,7 @@ const projects = [
     title: "Theory of Directed Bias in Ethical Systems",
     description:
       "PHIL 1000 essay exploring fairness through self-interest, drawing on Rawls’ Veil of Ignorance and structured uncertainty.",
-    image: "/w1.jpeg", 
+    image: "/w2.jpeg", 
     tags: ["Writing", "Philosophy", "Ethics"],
     category: "writings",
     demoUrl: "/writings/directed-bias",
