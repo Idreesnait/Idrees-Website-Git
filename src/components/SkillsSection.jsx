@@ -2,35 +2,31 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 const skills = [
-  // Frontend
+  // ===== FEATURED (summary-only) =====
+  { name: "Programming", level: 65, category: "featured" },
+  { name: "Fine Art", level: 90, category: "featured" },
+    { name: "Adobe Creative Cloud", level: 85, category: "featured" },
+  { name: "Prototyping", level: 80, category: "featured" },
+
+  // ===== FRONTEND =====
   { name: "HTML", level: 70, category: "frontend" },
   { name: "JavaScript", level: 70, category: "frontend" },
-  { name: "TypeScript", level: 50, category: "frontend" },
   { name: "Framer", level: 80, category: "frontend" },
 
-  // Backend
-  { name: "SQL", level: 20, category: "backend" },
+  // ===== BACKEND =====
   { name: "C++", level: 40, category: "backend" },
-  { name: "C#", level: 30, category: "backend" },
 
-  // Animation / Editing
+  // ===== ANIMATION =====
   { name: "Procreate Dreams", level: 80, category: "animation" },
   { name: "After Effects", level: 70, category: "animation" },
   { name: "Premiere Pro", level: 70, category: "animation" },
-  { name: "CapCut", level: 100, category: "animation" },
 
-  // Fine Art / Design
+  // ===== FINE ART =====
   { name: "Hand Drawing", level: 90, category: "fine art" },
   { name: "Procreate", level: 100, category: "fine art" },
-  { name: "Illustrator", level: 80, category: "fine art" },
-  { name: "Photoshop", level: 80, category: "fine art" },
-  { name: "InDesign", level: 85, category: "fine art" },
-  { name: "Lightroom", level: 90, category: "fine art" },
-  { name: "Adobe Express", level: 90, category: "fine art" },
-  { name: "Canva", level: 50, category: "fine art" },
-  { name: "Prototyping", level: 80, category: "fine art" },
+  { name: "Adobe Creative Cloud", level: 80, category: "fine art" },
 
-  // Tools / 3D
+  // ===== TOOLS =====
   { name: "GitHub", level: 90, category: "tools" },
   { name: "Figma", level: 95, category: "tools" },
   { name: "SOLIDWORKS (CSWA)", level: 90, category: "tools" },
@@ -39,26 +35,33 @@ const skills = [
   { name: "Exel", level: 70, category: "tools" },
 ];
 
-const categories = ["all", "frontend", "backend", "animation", "fine art", "tools"];
+const categories = [
+  "featured",
+  "frontend",
+  "backend",
+  "animation",
+  "fine art",
+  "tools",
+];
 
 export const SkillsSection = () => {
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeCategory, setActiveCategory] = useState("featured");
 
   const filteredSkills = skills.filter(
-    (skill) => activeCategory === "all" || skill.category === activeCategory
+    (skill) => skill.category === activeCategory
   );
 
   return (
     <section id="skills" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          My <span className="text-primary"> Skills</span>
+          My <span className="text-primary">Skills</span>
         </h2>
 
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category, key) => (
+          {categories.map((category) => (
             <button
-              key={key}
+              key={category}
               onClick={() => setActiveCategory(category)}
               className={cn(
                 "px-5 py-2 rounded-full transition-colors duration-300 capitalize",

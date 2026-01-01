@@ -16,6 +16,9 @@ const projects = [
     githubUrl: "",
   },
 
+    { id: 5, image: "/d2.jpeg", category: "Featured" },
+
+
 
   // ===== MOTION =====
   {
@@ -181,7 +184,7 @@ export const ProjectsSection = () => {
         </div>
 
         <p className="text-center text-xs text-muted-foreground mb-12">
-          More projects on the way — new work added weekly.
+          more projects on the way | new work added weekly
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
