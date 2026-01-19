@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
+ // { name: "", level: , category: "" },
+
 const skills = [
   // ===== FEATURED (summary-only) =====
   { name: "Programming", level: 65, category: "featured" },
@@ -12,9 +14,16 @@ const skills = [
   { name: "HTML", level: 70, category: "frontend" },
   { name: "JavaScript", level: 70, category: "frontend" },
   { name: "Framer", level: 80, category: "frontend" },
+  { name: "CSS", level: 80, category: "frontend" },
+  { name: "React", level: 80, category: "frontend" },
+  { name: "Vite", level: 80, category: "frontend" },
+
+
 
   // ===== BACKEND =====
-  { name: "C++", level: 40, category: "backend" },
+  { name: "C++", level: 70, category: "backend" },
+  { name: "Node.js", level: 70, category: "backend" },
+
 
   // ===== ANIMATION =====
   { name: "Procreate Dreams", level: 80, category: "animation" },

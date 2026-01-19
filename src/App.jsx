@@ -6,6 +6,8 @@ import AlienReflex from "./pages/AlienReflex";
 import { Toaster } from "@/components/ui/toaster";
 import SignalNoise from "./pages/SignalNoise";
 import WritingsEssay from "@/pages/WritingsEssay";
+import Object from "./pages/Object";
+
 
 
 
@@ -18,6 +20,7 @@ function App() {
           <Route path="/writings/directed-bias" element={<WritingsEssay />} />
           <Route index element={<Home />} />
           <Route path="/games/signal-noise" element={<SignalNoise />} />
+          <Route path="/object" element={<Object />} />
           <Route path="/games" element={<Games />} />
           <Route path="/games/alien-reflex" element={<AlienReflex />} />
           <Route path="*" element={<NotFound />} />

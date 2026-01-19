@@ -5,16 +5,37 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 const projects = [
   // ===== FEATURED =====
 {
-    id: 300,
-    title: "Survivor Arena",
-    description:
-      "Survivor Arena is a top-down survival shooter where you dodge swarms while auto-shooting, collecting drops, and building upgrades between levels. Survive longer, stack buffs/abilities, and chase your run’s high score.",
-    image: "/g1.jpeg", 
-    tags: ["Game", "Product Thinking", "UI/UX"],
-    category: "Featured",
-    demoUrl: "/games/signal-noise",
-    githubUrl: "",
-  },
+  id: 300, // different id
+  title: "Survivor Arena",
+  description:
+    "Survivor Arena started as a “what if I just made a game?” moment and turned into a top-down survival mess where you dodge swarms, auto-shoot everything, grab drops, and stack upgrades until things get unfair (for you). It’s chaotic, simple, and very much a product of me getting bored on a rainny day and deciding to build something.",
+  image: "/g1.jpeg",
+  tags: ["Game", "Product Thinking", "UI/UX"],
+  category: "featured",
+  demoUrl: "/games/signal-noise",
+  githubUrl: "",
+},
+{
+  id: 305, 
+  image: "/d2.jpeg",
+  category: "featured",
+  tags: ["Sketching", "Inking", "Surrealism"],
+  description: "I’ve been drawing for as long as I can remember, and for a couple years I became obsessed with pointillism and long hours of stippling. It slowed everything down and forced patience, since every image had to be built one mark at a time with no shortcuts. I think that’s why I stuck with it. The process felt quiet and focused, almost meditative. This piece came out of that period, with faces, flowers, and shadows layered until they start to blur together. It wasn’t about trying to make something deep, just spending enough time with the drawing until it became dense and heavy in its own way.",
+},
+{
+  id: 412, 
+  title: "Balsa Wood Truss Bridge",
+  description:
+    "A balsa wood truss bridge made from balsa wood, designed to efficiently carry load through a truss structure. Won first place at the Freshman Engineering Expo.",
+  image: "/Bridge.jpeg",
+  tags: ["Civil Engineering", "Structures", "Prototyping"],
+  category: "featured",
+  demoUrl: "/124.pdf",
+  githubUrl: "",
+},
+
+
+
 
     { id: 5, image: "/d2.jpeg", category: "Featured" },
 
@@ -27,7 +48,7 @@ const projects = [
     description:
       "My first animation—created by referencing existing Chainsaw Man footage to study timing, motion, and stylizing a new shot inspired by my favorite manga series.",
     image: "/CSMT.jpg",
-    tags: ["Motion", "Animation"],
+    tags: ["Motion", "2d Animation"],
     category: "motion",
     demoUrl: "/CSM.mov",
     githubUrl: "",
@@ -91,7 +112,31 @@ const projects = [
     category: "3d",
     demoUrl: "",
     githubUrl: "",
-  },
+  }, 
+
+  {
+  id: 402,
+  title: "Wooden Toy Biplane",
+  description:
+    "A wooden toy biplane model exploring form, object tolerancing, and material simplicity.",
+  image: "/Toy.jpeg",
+  tags: ["3D", "Modeling", "Wood"],
+  category: "3d",
+  demoUrl: "",
+  githubUrl: "",
+},
+{
+  id: 410,
+  title: "Balsa Wood Truss Bridge",
+  description:
+    "A balsa wood truss bridge made from balsa wood, designed to efficiently carry load through a truss structure. Won first place at the Freshman Engineering Expo. Linked is the judge's feedback.",
+  image: "/Bridge.jpeg",
+  tags: ["Civil Engineering", "Structures", "Prototyping"],
+  category: "3d",
+  demoUrl: "/124.pdf",
+  githubUrl: "",
+},
+
 
   // ===== GAMES =====
   {
@@ -105,6 +150,8 @@ const projects = [
     demoUrl: "/games/alien-reflex",
     githubUrl: "",
   },
+
+
 
   {
     id: 100,
@@ -132,9 +179,29 @@ const projects = [
   },
 
   // ===== VISUAL ART =====
-  { id: 4, image: "/d1.jpeg", category: "visual art" },
-  { id: 5, image: "/d2.jpeg", category: "visual art" },
-  { id: 7, image: "/d7.jpeg", category: "visual art" },
+{ id: 4, image: "/d1.jpeg", category: "visual art", tags: ["Inking", "Expressionism", "Pointillism"] },
+{ id: 5, image: "/d2.jpeg", category: "visual art", tags: ["Inking", "Expressionism", "Pointillism"] },
+{ id: 7, image: "/d7.jpeg", category: "visual art", tags: ["Inking", "Expressionism", "Pointillism"] },
+{ id: 420, image: "/da1.jpeg", category: "visual art", tags: ["Photoshop", "Procreate"] },
+{ id: 423, image: "/da2.jpeg", category: "visual art", tags: ["Photoshop", "Procreate"] },
+{ id: 422, image: "/atlas.jpeg", category: "visual art", tags: ["Procreate"] },
+
+
+
+
+// ===== OBJECT ===== 
+  {
+  id: 401,
+  title: "Object Blog",
+  description:
+    "Documentation for Object 3300.",
+  image: "/A13.jpeg",
+  tags: ["OOP", "Documentation", "College"],
+  category: "object",
+  demoUrl: "/object",
+  githubUrl: "",
+},
+
 ];
 
 const categories = [
@@ -145,15 +212,19 @@ const categories = [
   "games",
   "writings",
   "visual art",
+  "object",
 ];
 
 export const ProjectsSection = () => {
   const [activeCategory, setActiveCategory] = useState("featured");
 
-  const filteredProjects = projects.filter((p) => {
-    if (activeCategory === "featured") return false;
-    return p.category === activeCategory;
-  });
+const filteredProjects = projects.filter((p) => {
+  if (activeCategory === "featured") {
+    return p.category === "featured";
+  }
+  return p.category === activeCategory;
+});
+
 
   return (
     <section id="projects" className="py-24 px-4 relative">
@@ -184,7 +255,7 @@ export const ProjectsSection = () => {
         </div>
 
         <p className="text-center text-xs text-muted-foreground mb-12">
-          more projects on the way | new work added weekly
+          more projects on the way - added weekly 
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
