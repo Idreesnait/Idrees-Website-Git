@@ -42,6 +42,8 @@ const skills = [
   { name: "Onshape", level: 80, category: "tools" },
   { name: "SketchUp", level: 90, category: "tools" },
   { name: "Exel", level: 70, category: "tools" },
+  { name: "Framer", level: 90, category: "tools" },
+
 ];
 
 const categories = [
