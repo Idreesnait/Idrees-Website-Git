@@ -177,6 +177,18 @@ const projects = [
     demoUrl: "/writings/directed-bias",
     githubUrl: "",
   },
+  {
+  id: 201,
+  title: "Letter to Donna Haraway",
+  description:
+    "A speculative fiction essay inspired by Donna Haraway, imagining a posthumous world where one of her intellectual descendants witnesses the consequences of cyborg theory made real. Told as a letter from Lilith to Haraway, the piece explores grief, care, epiphylogenesis, and the strategic use of emotion in human–AI relationships, questioning whether feeling leads to ethics, or merely optimization.",
+  image: "/w5.jpeg",
+  tags: ["Writing", "Philosophy", "Narrative"],
+  category: "writings",
+  demoUrl: "/writings/essay-2",
+  githubUrl: "",
+},
+
 
   // ===== VISUAL ART =====
 { id: 4, image: "/d1.jpeg", category: "visual art", tags: ["Inking", "Expressionism", "Pointillism"] },
