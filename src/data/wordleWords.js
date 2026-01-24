@@ -1,0 +1,45 @@
+export const WORDLE_WORDS = [
+  // core
+  "after","again","below","could","every","first","found","great","house","large",
+  "learn","never","other","place","plant","point","right","small","sound","spell",
+  "still","study","their","there","these","thing","think","three","water","where",
+  "which","world","would","write",
+
+  // common nouns
+  "apple","beach","brain","bread","break","bring","brown","build","buyer","chair",
+  "chest","clean","clear","clock","cloud","cover","dance","dream","drink","drive",
+  "earth","enjoy","field","flame","floor","fruit","glass","green","happy","heart",
+  "horse","light","money","music","night","ocean","order","paper","party","phone",
+  "power","quick","river","round","scene","smile","space","stand","steam","stone",
+  "table","taste","teach","thank","touch","train","truth","watch","white","woman",
+  "youth",
+
+  // abstract / verbs
+  "alive","angle","award","basic","begin","black","blame","blind","block","blood",
+  "board","boost","bound","breed","brick","brief","broad","broke","cable","carry",
+  "cause","chain","chart","chase","cheap","check","chief","child","claim","class",
+  "climb","close","coach","coast","count","court","crack","craft","crash","cream",
+  "crime","cross","crowd","crown","curve","cycle","daily","death","depth","devil",
+  "dirty","doubt","dozen","draft","drama","dress","drunk","eager","early","enemy",
+  "enter","equal","error","event","faith","false","fault","fiber","fifth","fifty",
+  "fight","final","flash","fleet","focus","force","forth","forty","frame","fresh",
+  "front","fully","funny","giant","given","globe","grace","grade","grain","grant",
+  "grass","gross","guard","guess","guest","guide","habit","harsh","heavy","hello",
+  "honor","hotel","human","humor","ideal","image","index","inner","input","issue",
+  "joint","judge","juice","knife","layer","limit","local","logic","loose","lucky",
+  "lunch","magic","major","maker","march","match","maybe","metal","model","month",
+  "motor","mount","mouse","mouth","movie","naked","nerve","noise","north","novel",
+  "nurse","occur","offer","often","outer","owner","panel","pause","peace","photo",
+  "piece","pilot","pitch","plain","plane","plate","pound","press","price","pride",
+  "prime","print","prior","prize","proof","proud","queen","quiet","radio","raise",
+  "range","ratio","reach","react","ready","refer","relax","reply","reset","route",
+  "royal","scale","scope","score","sense","serve","seven","shall","shape","share",
+  "sharp","sheet","shelf","shell","shift","shine","shirt","shock","shoot","short",
+  "shown","sight","skill","sleep","slide","smoke","solid","south","speed","spend",
+  "split","sport","stack","start","state","steel","stick","stock","store","storm",
+  "story","strip","stuff","style","sugar","theme","thick","third","throw","tight",
+  "title","today","topic","total","tough","tower","track","trade","treat","trend",
+  "trial","trust","twice","under","union","unity","upper","upset","value","video",
+  "visit","voice","waste","wheel","while","whole","worry","worse","worth","wrong",
+  "yield","young"
+];

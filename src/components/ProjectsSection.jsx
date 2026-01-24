@@ -151,6 +151,17 @@ const projects = [
     githubUrl: "",
   },
 
+{
+  id: 130,
+  title: "Hard Game",
+  description:
+    "A deceptively simple game inspired by The World’s Hardest Game. Every question is a trap. One wrong answer resets everything. The UI is minimal, the logic is cruel, and the only way forward is perfect attention.",
+  image: "/hg.jpeg", // placeholder image
+  tags: ["Game", "Psychology", "UI/UX"],
+  category: "games",
+  demoUrl: "/games/hard-game",
+  githubUrl: "",
+},
 
 
   {
