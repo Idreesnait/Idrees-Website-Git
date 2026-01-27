@@ -8,6 +8,7 @@ const navItems = [
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
+  { name: "Resume", href: "/resume.pdf", external: true },
 ];
 
 export const Navbar = () => {
@@ -50,6 +51,8 @@ export const Navbar = () => {
             <a
               key={key}
               href={item.href}
+              target={item.external ? "_blank" : undefined}
+              rel={item.external ? "noopener noreferrer" : undefined}
               className="text-foreground/80 hover:text-primary transition-colors duration-300"
             >
               {item.name}
@@ -95,6 +98,8 @@ export const Navbar = () => {
               <a
                 key={key}
                 href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
                 className="text-foreground/80 hover:text-primary transition-colors duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
