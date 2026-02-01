@@ -10,6 +10,7 @@ import Object from "./pages/ObjectFolder";
 import WritingsEssay2 from "@/pages/WritingsEssay2";
 import HardGame from "./pages/HardGame";
 
+
 function App() {
   return (
     <>

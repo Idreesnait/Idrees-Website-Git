@@ -8,7 +8,7 @@ const navItems = [
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
-  { name: "Resume", href: "/resume.pdf", external: true },
+  { name: "Resume", href: "/Idreesnait.pdf", external: true },
 ];
 
 export const Navbar = () => {
