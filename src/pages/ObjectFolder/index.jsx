@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import Project1 from "./Project1";
 import Project2 from "./Project2";
+import Project3 from "./Project3";
+
+
 
 
 const projects = Array.from({ length: 9 }, (_, i) => ({
@@ -67,23 +70,25 @@ export default function Object() {
                 </h2>
 
                 <div className="space-y-10 text-muted-foreground">
-                  {p.number === 1 ? (
-  <Project1 />
-) : p.number === 2 ? (
-  <Project2 />
-) : (
-  <>
-    <div><h3 className="font-medium text-foreground">Overview</h3></div>
-    <div><h3 className="font-medium text-foreground">Process & Experiments</h3></div>
-    <div><h3 className="font-medium text-foreground">How It Works</h3></div>
-    <div><h3 className="font-medium text-foreground">Materials</h3></div>
-    <div><h3 className="font-medium text-foreground">Images & Video</h3></div>
-    <div><h3 className="font-medium text-foreground">Code</h3></div>
-    <div><h3 className="font-medium text-foreground">References & Sources</h3></div>
-  </>
-)}
+  {p.number === 1 ? (
+    <Project1 />
+  ) : p.number === 2 ? (
+    <Project2 />
+  ) : p.number === 3 ? (
+    <Project3 />
+  ) : (
+    <>
+      <div><h3 className="font-medium text-foreground">Overview</h3></div>
+      <div><h3 className="font-medium text-foreground">Process & Experiments</h3></div>
+      <div><h3 className="font-medium text-foreground">How It Works</h3></div>
+      <div><h3 className="font-medium text-foreground">Materials</h3></div>
+      <div><h3 className="font-medium text-foreground">Images & Video</h3></div>
+      <div><h3 className="font-medium text-foreground">Code</h3></div>
+      <div><h3 className="font-medium text-foreground">References & Sources</h3></div>
+    </>
+  )}
+</div>
 
-                </div>
               </div>
             </section>
           ))}
