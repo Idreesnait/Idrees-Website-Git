@@ -1,4 +1,4 @@
-export default function Project3() {
+export default function Project() {
   return (
     <>
       {/* OVERVIEW */}
