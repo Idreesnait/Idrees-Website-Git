@@ -735,9 +735,8 @@ void loop() {
 }`}
   </pre>
 </div>
-    </>
-  );
-  {/* PROBLEMS FACED */}
+
+{/* PROBLEMS FACED */}
 <div className="rounded-2xl border bg-white/70 p-6 shadow-xl shadow-black/20">
   <h3 className="font-medium text-foreground mb-4">
     Problems Faced & Solutions
@@ -752,7 +751,7 @@ void loop() {
 
     <li>
       <strong>Double-counting joystick hits in Part 5:</strong> Holding the
-      joystick in one direction caused multiple hits. I fixed this by forcing
+      joystick in one direction caused multiple hits on successive LED light ups on the same LED. I fixed this by forcing
       the joystick to return to center before allowing the next hit.
     </li>
 
@@ -788,16 +787,7 @@ void loop() {
       </a>
     </li>
 
-    <li>
-      <a
-        href="https://www.arduino.cc/reference/en/language/functions/analog-io/analogread/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-600 underline hover:text-blue-800"
-      >
-        analogRead() Reference
-      </a>
-    </li>
+   
 
     <li>
       <a
@@ -816,4 +806,7 @@ void loop() {
   </ul>
 </div>
 
+    </>
+  );
+  
 }
