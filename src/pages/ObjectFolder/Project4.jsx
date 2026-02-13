@@ -737,4 +737,83 @@ void loop() {
 </div>
     </>
   );
+  {/* PROBLEMS FACED */}
+<div className="rounded-2xl border bg-white/70 p-6 shadow-xl shadow-black/20">
+  <h3 className="font-medium text-foreground mb-4">
+    Problems Faced & Solutions
+  </h3>
+
+  <ul className="list-disc pl-5 space-y-3 text-sm leading-relaxed">
+    <li>
+      <strong>Inconsistent joystick readings:</strong> The centered position
+      was not exactly 512. I solved this by creating threshold ranges 
+      (400–600) instead of checking for exact values.
+    </li>
+
+    <li>
+      <strong>Double-counting joystick hits in Part 5:</strong> Holding the
+      joystick in one direction caused multiple hits. I fixed this by forcing
+      the joystick to return to center before allowing the next hit.
+    </li>
+
+    <li>
+      <strong>LED wiring conflicts:</strong> Some LEDs initially shared
+      breadboard rows, preventing independent control. I rewired each LED to
+      separate rows to ensure proper digital output control.
+    </li>
+
+    <li>
+      <strong>Large video files exceeding GitHub limits:</strong> Videos over
+      100MB could not be pushed. I moved large gameplay files to Google Drive
+      and linked them instead.
+    </li>
+  </ul>
+</div>
+
+{/* REFERENCES */}
+<div className="rounded-2xl border bg-white/70 p-6 shadow-xl shadow-black/20">
+  <h3 className="font-medium text-foreground mb-4">
+    References & Sources
+  </h3>
+
+  <ul className="list-disc pl-5 space-y-2 text-sm">
+    <li>
+      <a
+        href="https://docs.arduino.cc/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 underline hover:text-blue-800"
+      >
+        Arduino Official Documentation
+      </a>
+    </li>
+
+    <li>
+      <a
+        href="https://www.arduino.cc/reference/en/language/functions/analog-io/analogread/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 underline hover:text-blue-800"
+      >
+        analogRead() Reference
+      </a>
+    </li>
+
+    <li>
+      <a
+        href="https://www.arduino.cc/reference/en/language/functions/math/map/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 underline hover:text-blue-800"
+      >
+        map() Function Reference
+      </a>
+    </li>
+
+    <li>
+      ATLS 3300 Lecture Slides – Analog Input
+    </li>
+  </ul>
+</div>
+
 }
