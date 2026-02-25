@@ -3,9 +3,7 @@ import Project1 from "./Project1";
 import Project2 from "./Project2";
 import Project3 from "./Project3";
 import Project4 from "./Project4";
-
-
-
+import Project5 from "./Project5";
 
 const projects = Array.from({ length: 9 }, (_, i) => ({
   id: `project-${i + 1}`,
@@ -42,12 +40,11 @@ export default function Object() {
           <a
             key={p.id}
             href={`#${p.id}`}
-            className={`w-10 h-10 flex items-center justify-center rounded-full text-sm font-medium transition-all
-              ${
-                active === p.id
-                  ? "bg-teal-500 text-white shadow-lg scale-105"
-                  : "bg-white/60 text-muted-foreground hover:bg-teal-100 hover:text-teal-700"
-              }`}
+            className={`w-10 h-10 flex items-center justify-center rounded-full text-sm font-medium transition-all ${
+              active === p.id
+                ? "bg-teal-500 text-white shadow-lg scale-105"
+                : "bg-white/60 text-muted-foreground hover:bg-teal-100 hover:text-teal-700"
+            }`}
           >
             {p.number}
           </a>
@@ -56,9 +53,12 @@ export default function Object() {
 
       <main className="px-6 py-24 max-w-6xl mx-auto">
         <header className="text-center mb-32">
-          <h1 className="text-5xl font-bold mb-6">Object 3300 Documentation</h1>
+          <h1 className="text-5xl font-bold mb-6">
+            Object 3300 Documentation
+          </h1>
           <p className="max-w-3xl mx-auto text-muted-foreground text-lg">
-            A living record of my process, experiments, failures, and outcomes in ATLS 3300.
+            A living record of my process, experiments, failures, and outcomes
+            in ATLS 3300.
           </p>
         </header>
 
@@ -71,28 +71,56 @@ export default function Object() {
                 </h2>
 
                 <div className="space-y-10 text-muted-foreground">
-  {p.number === 1 ? (
-  <Project1 />
-) : p.number === 2 ? (
-  <Project2 />
-) : p.number === 3 ? (
-  <Project3 />
-) : p.number === 4 ? (
-  <Project4 />
-) : (
-
-    <>
-      <div><h3 className="font-medium text-foreground">Overview</h3></div>
-      <div><h3 className="font-medium text-foreground">Process & Experiments</h3></div>
-      <div><h3 className="font-medium text-foreground">How It Works</h3></div>
-      <div><h3 className="font-medium text-foreground">Materials</h3></div>
-      <div><h3 className="font-medium text-foreground">Images & Video</h3></div>
-      <div><h3 className="font-medium text-foreground">Code</h3></div>
-      <div><h3 className="font-medium text-foreground">References & Sources</h3></div>
-    </>
-  )}
-</div>
-
+                  {p.number === 1 ? (
+                    <Project1 />
+                  ) : p.number === 2 ? (
+                    <Project2 />
+                  ) : p.number === 3 ? (
+                    <Project3 />
+                  ) : p.number === 4 ? (
+                    <Project4 />
+                  ) : p.number === 5 ? (
+                    <Project5 />
+                  ) : (
+                    <>
+                      <div>
+                        <h3 className="font-medium text-foreground">
+                          Overview
+                        </h3>
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-foreground">
+                          Process & Experiments
+                        </h3>
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-foreground">
+                          How It Works
+                        </h3>
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-foreground">
+                          Materials
+                        </h3>
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-foreground">
+                          Images & Video
+                        </h3>
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-foreground">
+                          Code
+                        </h3>
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-foreground">
+                          References & Sources
+                        </h3>
+                      </div>
+                    </>
+                  )}
+                </div>
               </div>
             </section>
           ))}
