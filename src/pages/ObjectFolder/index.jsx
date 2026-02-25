@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Project1 from "./Project1";
 import Project2 from "./Project2";
 import Project3 from "./Project3";
+import Project4 from "./Project4";
 
 
 
@@ -71,12 +72,15 @@ export default function Object() {
 
                 <div className="space-y-10 text-muted-foreground">
   {p.number === 1 ? (
-    <Project1 />
-  ) : p.number === 2 ? (
-    <Project2 />
-  ) : p.number === 3 ? (
-    <Project3 />
-  ) : (
+  <Project1 />
+) : p.number === 2 ? (
+  <Project2 />
+) : p.number === 3 ? (
+  <Project3 />
+) : p.number === 4 ? (
+  <Project4 />
+) : (
+
     <>
       <div><h3 className="font-medium text-foreground">Overview</h3></div>
       <div><h3 className="font-medium text-foreground">Process & Experiments</h3></div>
