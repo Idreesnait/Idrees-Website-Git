@@ -4,6 +4,7 @@ import Project2 from "./Project2";
 import Project3 from "./Project3";
 import Project4 from "./Project4";
 import Project5 from "./Project5";
+import Project6 from "./Project6";
 
 const projects = Array.from({ length: 9 }, (_, i) => ({
   id: `project-${i + 1}`,
@@ -71,17 +72,19 @@ export default function Object() {
                 </h2>
 
                 <div className="space-y-10 text-muted-foreground">
-                  {p.number === 1 ? (
-                    <Project1 />
-                  ) : p.number === 2 ? (
-                    <Project2 />
-                  ) : p.number === 3 ? (
-                    <Project3 />
-                  ) : p.number === 4 ? (
-                    <Project4 />
-                  ) : p.number === 5 ? (
-                    <Project5 />
-                  ) : (
+                 {p.number === 1 ? (
+  <Project1 />
+) : p.number === 2 ? (
+  <Project2 />
+) : p.number === 3 ? (
+  <Project3 />
+) : p.number === 4 ? (
+  <Project4 />
+) : p.number === 5 ? (
+  <Project5 />
+) : p.number === 6 ? (
+  <Project6 />
+) : (
                     <>
                       <div>
                         <h3 className="font-medium text-foreground">
