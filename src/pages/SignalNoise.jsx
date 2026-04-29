@@ -2123,7 +2123,7 @@ export default function SignalNoise() {
         </div>
 
         <div className="mt-10 text-center text-xs text-slate-500">
-          Survivor Arena • upgrades + locked batches + abilities (X/C/Z) • device best + session best
+          Survivor Arena • By Idrees J. Nait 
         </div>
       </div>
 
