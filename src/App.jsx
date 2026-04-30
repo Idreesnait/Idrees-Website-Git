@@ -8,7 +8,8 @@ import SignalNoise from "./pages/SignalNoise";
 import WritingsEssay from "@/pages/WritingsEssay";
 import Object from "./pages/ObjectFolder";
 import WritingsEssay2 from "@/pages/WritingsEssay2";
-import HardGame from "./pages/HardGame";
+import Daniel from "./pages/Daniel";
+
 
 
 function App() {
@@ -22,13 +23,15 @@ function App() {
           <Route path="/games" element={<Games />} />
           <Route path="/games/signal-noise" element={<SignalNoise />} />
           <Route path="/games/alien-reflex" element={<AlienReflex />} />
-          <Route path="/games/hard-game" element={<HardGame />} />
+          
 
           <Route path="/writings/directed-bias" element={<WritingsEssay />} />
           <Route path="/writings/essay-2" element={<WritingsEssay2 />} />
           <Route path="/object" element={<Object />} />
 
           <Route path="*" element={<NotFound />} />
+
+          <Route path="/daniel" element={<Daniel />} />
         </Routes>
       </BrowserRouter>
     </>

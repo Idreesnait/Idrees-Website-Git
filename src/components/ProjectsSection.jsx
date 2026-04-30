@@ -4,6 +4,18 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 
 const projects = [
   // ===== FEATURED =====
+  {
+  id: 500,
+  title: "D.A.N.I.E.L. AI Assistant",
+  description:
+    "A physical voice controlled AI desk assistant built with a Raspberry Pi, button input, microphone, speakers, speech recognition, and text to speech.",
+  image: "/daniel-1.jpeg",
+  tags: ["AI", "Raspberry Pi", "Physical Computing"],
+  category: "featured",
+  demoUrl: "/daniel",
+  githubUrl: "",
+},
+
 {
   id: 300, // different id
   title: "Survivor Arena",
@@ -153,13 +165,13 @@ const projects = [
 
 {
   id: 130,
-  title: "Hard Game",
+  title: "Pong Volume Controller",
   description:
-    "A deceptively simple game inspired by The World’s Hardest Game. Every question is a trap. One wrong answer resets everything. The UI is minimal, the logic is cruel, and the only way forward is perfect attention.",
-  image: "/hg.jpeg", // placeholder image
-  tags: ["Game", "Psychology", "UI/UX"],
+    "A deliberately frustrating Pong based volume controller where gameplay becomes the volume control interface.",
+  image: "/pg.png",
+  tags: ["Game", "Interaction", "UI/UX"],
   category: "games",
-  demoUrl: "/games/hard-game",
+  demoUrl: "/pong-game/final.html",
   githubUrl: "",
 },
 
