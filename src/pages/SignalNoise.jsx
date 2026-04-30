@@ -1,23 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-/*
-  SURVIVOR ARENA (one-file React game)
-  - WASD / Arrow keys to move
-  - Auto-shoots nearest enemy
-  - Levels: when level XP fills -> banner -> shop -> Start next level
-  - Each new level refreshes enemies/pickups/projectiles/walls, keeps your player stats + XP bank
-  - Drops:
-      • XP (currency + level progress)
-      • Green heal dots (instant heal)
-      • Red enemies drop: small XP pile + regen pickup
-      • Orange enemies drop: orange combo dot (50% speed 5s + fire-rate 3s)
-  - Abilities system with binds: X, then C, then Z (unlockable)
-      • Abilities have cooldowns
-      • In shop: Abilities tab shows unlocked batches by level
-*/
 
-const W = 1120; // bigger screen
+
+const W = 1120; 
 const H = 720;
 
 const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
@@ -152,7 +138,6 @@ function spawnEdge() {
 }
 
 function levelNeedXp(level) {
-  // Slightly easier curve than before
   return Math.floor(30 + level * 18 + level * level * 2.3);
 }
 
@@ -195,7 +180,6 @@ function makeEnemy(kind, tSec, level, playerX, playerY) {
   }
 
   if (kind === "runner") {
-    // orange enemy that drops ORANGE COMBO buff
     const hp = baseHp * 0.9;
     return {
       id: Math.floor(Math.random() * 1e9),
@@ -232,7 +216,7 @@ function makeEnemy(kind, tSec, level, playerX, playerY) {
   }
 
   if (kind === "frenzy") {
-    // red enemy that drops XP pile + regen pickup
+    
     const hp = baseHp * 1.0;
     return {
       id: Math.floor(Math.random() * 1e9),
@@ -287,7 +271,6 @@ function makeEnemy(kind, tSec, level, playerX, playerY) {
     };
   }
 
-  // basic
   const hp = baseHp;
   return {
     id: Math.floor(Math.random() * 1e9),
@@ -338,7 +321,7 @@ function makeEnemyProjectile(x, y, dx, dy) {
 }
 
 function makePickup(x, y, type, value = 0) {
-  // type: xp | heal | regen | orangeCombo
+ 
   return {
     id: Math.floor(Math.random() * 1e9),
     x,
@@ -352,11 +335,11 @@ function makePickup(x, y, type, value = 0) {
 
 /* -------------------------- UPGRADES (TIERS + LOCKED BATCHES) -------------------------- */
 
-// NOTE: You asked for MUCH higher damage and fire rate boosts (easier).
-// We make these significantly stronger now.
+
+
 
 const UPGRADE_DEFS = [
-  // Batch 1 (lvl 1+)
+  
   {
     key: "dmg",
     name: "Damage",
@@ -379,7 +362,6 @@ const UPGRADE_DEFS = [
     minLevel: 1,
     statText: (t) => `${Math.round((0.65 * (t / 3)) * 100)}%`,
     applyTier: (p, tierDelta) => {
-      // scale delay down, strong
       const per = 0.65 / 3;
       const factor = 1 - per * tierDelta;
       return { ...p, fireDelay: Math.max(0.05, p.fireDelay * factor) };
@@ -438,7 +420,6 @@ const UPGRADE_DEFS = [
     },
   },
 
-  // Batch 2 (lvl 3+)
   {
     key: "pierce",
     name: "Pierce",
@@ -474,14 +455,12 @@ const UPGRADE_DEFS = [
     minLevel: 3,
     statText: (t) => `${Math.round((0.20 + 0.08 * (t - 1)) * 100)}% HP shield`,
     applyTier: (p, tierDelta) => {
-      // stored in p.shieldPctPerLevel
       const cur = p.shieldPctPerLevel || 0.20;
       const next = Math.min(0.36, cur + 0.08 * tierDelta);
       return { ...p, shieldPctPerLevel: next };
     },
   },
 
-  // Batch 3 (lvl 5+)
   {
     key: "lifesteal",
     name: "Lifesteal",
@@ -546,7 +525,6 @@ const ABILITY_DEFS = [
     minLevel: 4,
     cost: (lvl) => Math.floor(70 * (1 + Math.min(0.5, lvl * 0.03))),
     cast: ({ p, enemies }) => {
-      // Laser hits enemies in a wide line towards nearest enemy
       if (!enemies.length) return;
       let bestI = 0;
       let bestD = Infinity;
@@ -565,12 +543,10 @@ const ABILITY_DEFS = [
       const ux = dx / len;
       const uy = dy / len;
 
-      // line thickness
       const width = 26;
       const dmg = p.dmg * 2.25;
 
       for (const e of enemies) {
-        // distance point-to-line segment from p to far
         const px = e.x - p.x;
         const py = e.y - p.y;
         const proj = px * ux + py * uy;
@@ -649,7 +625,7 @@ export default function SignalNoise() {
     Math.max(1, Number(localStorage.getItem(unlockedKey) || 1))
   );
 
-  const [phase, setPhase] = useState("menu"); // menu | play | shop | over
+  const [phase, setPhase] = useState("menu"); 
   const [paused, setPaused] = useState(false);
 
   const phaseRef = useRef(phase);
@@ -662,7 +638,6 @@ export default function SignalNoise() {
 
   const keys = useRef({ up: false, down: false, left: false, right: false });
 
-  // player state (ref for loop)
   const playerRef = useRef({
     x: W / 2,
     y: H / 2,
@@ -703,7 +678,6 @@ export default function SignalNoise() {
   const wallsRef = useRef([]);
   const enemyShotsRef = useRef([]);
 
-  // ability entities
   const turretsRef = useRef([]);
   const decoysRef = useRef([]);
 
@@ -721,7 +695,6 @@ export default function SignalNoise() {
     message: "",
   });
 
-  // upgrades tiers
   const [tiers, setTiers] = useState(() => {
     const raw = localStorage.getItem("survivor_arena_upgrade_tiers");
     if (raw) {
@@ -736,7 +709,6 @@ export default function SignalNoise() {
     localStorage.setItem("survivor_arena_upgrade_tiers", JSON.stringify(tiers || {}));
   }, [tiers]);
 
-  // abilities owned + binds
   const [abilityOwned, setAbilityOwned] = useState(() => {
     const raw = localStorage.getItem("survivor_arena_ability_owned");
     if (raw) {
@@ -779,12 +751,11 @@ export default function SignalNoise() {
     localStorage.setItem("survivor_arena_bind_unlocked", JSON.stringify(bindUnlocked || {}));
   }, [bindUnlocked]);
 
-  // cooldown tracking (timestamps)
-  const cdsRef = useRef({}); // key -> readyAtMs
+  const cdsRef = useRef({}); 
 
   const [levelBanner, setLevelBanner] = useState({ show: false, text: "" });
 
-  const [shopTab, setShopTab] = useState("upgrades"); // upgrades | abilities | binds
+  const [shopTab, setShopTab] = useState("upgrades");  
 
   const bg = useMemo(() => {
     return `radial-gradient(1200px_circle_at_12%_10%,rgba(79,70,229,0.12),transparent_60%),
@@ -807,12 +778,11 @@ export default function SignalNoise() {
     const orangeSpeed = tMs < p.orangeSpeedUntil;
     let mult = 1;
     if (haste) mult *= 1.55;
-    if (orangeSpeed) mult *= 1.5; // per request: 50% speed boost 5s
+    if (orangeSpeed) mult *= 1.5;
     return p.moveSpeed * mult;
   }
 
   function refreshForLevel(level) {
-    // wipe enemies + projectiles + pickups + walls each level
     enemiesRef.current = [];
     bulletsRef.current = [];
     pickupsRef.current = [];
@@ -823,7 +793,6 @@ export default function SignalNoise() {
     spawnAccRef.current = 0;
     shootAccRef.current = 0;
 
-    // reset player position + give level start shield
     const p = playerRef.current;
     p.x = W / 2;
     p.y = H / 2;
@@ -851,7 +820,6 @@ export default function SignalNoise() {
   }
 
   function resetRun(startLevel = 1) {
-    // base player (buffed a bit so you stop dying at lvl 4)
     const base = {
       x: W / 2,
       y: H / 2,
@@ -898,7 +866,6 @@ export default function SignalNoise() {
     setPaused(false);
     setLevelBanner({ show: false, text: "" });
 
-    // start with level refresh
     refreshForLevel(startLevel);
   }
 
@@ -920,7 +887,6 @@ export default function SignalNoise() {
     setTimeout(() => setLevelBanner({ show: false, text: "" }), 900);
 
     setTimeout(() => {
-      // move to shop, but do NOT start next level until button pressed
       setUi((s) => ({
         ...s,
         level: nextLevel,
@@ -942,7 +908,6 @@ export default function SignalNoise() {
   }
 
   function startNextLevel() {
-    // refresh state for that level and resume play
     refreshForLevel(ui.level);
     setPhase("play");
     setPaused(false);
@@ -1048,7 +1013,7 @@ export default function SignalNoise() {
 
       if (k === "h") setShowHowTo(true);
 
-      // abilities
+    
       if (phaseRef.current === "play" && !paused) {
         if (k === "x") castBound("X");
         if (k === "c") castBound("C");
@@ -1070,7 +1035,6 @@ export default function SignalNoise() {
       window.removeEventListener("keydown", down);
       window.removeEventListener("keyup", up);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ui.level, paused, binds]);
 
   /* -------------------------- LOOP -------------------------- */
@@ -1089,20 +1053,16 @@ export default function SignalNoise() {
     const alive = (tMs - tStartMs) / 1000;
     setTimeAlive(alive);
 
-    // regen
     if (p.regen > 0) p.hp = Math.min(p.maxHp, p.hp + p.regen * dt);
 
-    // iFrames
     p.iFrames = Math.max(0, p.iFrames - dt);
 
-    // decoys tick
     for (let i = decoys.length - 1; i >= 0; i--) {
       const d = decoys[i];
       d.life -= dt;
       if (d.life <= 0 || d.hp <= 0) decoys.splice(i, 1);
     }
 
-    // turrets tick + shoot
     for (let i = turrets.length - 1; i >= 0; i--) {
       const t = turrets[i];
       t.life -= dt;
@@ -1113,7 +1073,6 @@ export default function SignalNoise() {
       t.shootCd -= dt;
       if (t.shootCd <= 0 && enemies.length) {
         t.shootCd = 0.20;
-        // shoot nearest enemy
         let bestI = 0;
         let bestD = Infinity;
         for (let j = 0; j < enemies.length; j++) {
@@ -1131,7 +1090,7 @@ export default function SignalNoise() {
       }
     }
 
-    // movement
+    
     let mx = 0,
       my = 0;
     if (keys.current.left) mx -= 1;
@@ -1149,7 +1108,6 @@ export default function SignalNoise() {
       p.y += my * speedNow * dt;
     }
 
-    // wall collision player
     for (const w of walls) {
       const cx = clamp(p.x, w.x, w.x + w.w);
       const cy = clamp(p.y, w.y, w.y + w.h);
@@ -1163,9 +1121,8 @@ export default function SignalNoise() {
     p.x = clamp(p.x, p.r, W - p.r);
     p.y = clamp(p.y, p.r, H - p.r);
 
-    // Spawn enemies: refreshed per level, ramp within level, slightly easier overall
     const level = ui.level;
-    const within = alive; // still increases but slower
+    const within = alive; 
     const spawnRate = 0.78 + within / 32 + level * 0.16;
     spawnAccRef.current += dt * spawnRate;
 
@@ -1173,7 +1130,6 @@ export default function SignalNoise() {
       const r = Math.random();
       const l = level;
 
-      // weights tuned easier early
       let basicW = 0.58;
       let bruteW = Math.min(0.18, 0.08 + l * 0.015);
       let medicW = l >= 2 ? 0.10 : 0.0;
@@ -1213,7 +1169,6 @@ export default function SignalNoise() {
       enemies.push(e.safe ? e : { ...e, x: e.x + rand(-200, 200), y: e.y + rand(-200, 200) });
     }
 
-    // choose target for enemies: player or decoy (closest)
     const getTarget = (e) => {
       if (!decoys.length) return { x: p.x, y: p.y, isPlayer: true, ref: null };
       let best = { x: p.x, y: p.y, isPlayer: true, ref: null };
@@ -1228,7 +1183,6 @@ export default function SignalNoise() {
       return best;
     };
 
-    // enemies move + attacks
     for (let i = enemies.length - 1; i >= 0; i--) {
       const e = enemies[i];
       const tgt = getTarget(e);
@@ -1243,7 +1197,7 @@ export default function SignalNoise() {
       let ux = dx0 / d0 + wx * 0.35;
       let uy = dy0 / d0 + wy * 0.35;
 
-      // wall avoidance
+      
       for (const w of walls) {
         const nx = e.x + ux * e.speed * dt;
         const ny = e.y + uy * e.speed * dt;
@@ -1262,7 +1216,6 @@ export default function SignalNoise() {
       e.x += ux * e.speed * dt;
       e.y += uy * e.speed * dt;
 
-      // spitter
       if (e.kind === "spitter") {
         e.spitCd -= dt;
         if (e.spitCd <= 0) {
@@ -1271,7 +1224,6 @@ export default function SignalNoise() {
         }
       }
 
-      // contact damage
       const rr = (tgt.isPlayer ? p.r : tgt.ref.r) + e.r;
       if (dist2(tgt.x, tgt.y, e.x, e.y) < rr * rr) {
         const dmgBase = e.touchDmg || 10;
@@ -1280,7 +1232,7 @@ export default function SignalNoise() {
 
         if (tgt.isPlayer) {
           if (p.iFrames <= 0) {
-            // shield eats damage first
+           
             if (p.shield > 0) {
               const take = Math.min(p.shield, dmg);
               p.shield -= take;
@@ -1291,7 +1243,6 @@ export default function SignalNoise() {
             }
             p.iFrames = 0.45;
 
-            // knockback
             const push = 200;
             p.x = clamp(p.x - (dx0 / d0) * push * dt, p.r, W - p.r);
             p.y = clamp(p.y - (dy0 / d0) * push * dt, p.r, H - p.r);
@@ -1302,7 +1253,6 @@ export default function SignalNoise() {
       }
     }
 
-    // enemy projectiles
     for (let i = enemyShots.length - 1; i >= 0; i--) {
       const s = enemyShots[i];
       s.x += s.vx * dt;
@@ -1339,7 +1289,6 @@ export default function SignalNoise() {
       }
     }
 
-    // auto shoot
     shootAccRef.current += dt;
     const fireDelayNow = getEffectiveFireDelay(p, tMs);
     if (shootAccRef.current >= fireDelayNow && enemies.length) {
@@ -1362,7 +1311,6 @@ export default function SignalNoise() {
       bullets.push(b);
     }
 
-    // bullets
     for (let i = bullets.length - 1; i >= 0; i--) {
       const b = bullets[i];
       b.x += b.vx * dt;
@@ -1390,12 +1338,10 @@ export default function SignalNoise() {
           if (e.hp <= 0) {
             enemies.splice(j, 1);
 
-            // lifesteal
             if ((p.lifesteal || 0) > 0) {
               p.hp = Math.min(p.maxHp, p.hp + p.lifesteal);
             }
 
-            // XP drop values (smallly boosted)
             const xpVal =
               e.kind === "brute"
                 ? 16
@@ -1413,19 +1359,15 @@ export default function SignalNoise() {
 
             pickups.push(makePickup(e.x, e.y, "xp", xpVal));
 
-            // medic drops heal
             if (e.kind === "medic") pickups.push(makePickup(e.x + rand(-10, 10), e.y + rand(-10, 10), "heal", 26));
 
-            // red enemy drops: XP pile + regen pickup
             if (e.kind === "frenzy") {
               for (let k = 0; k < 4; k++) pickups.push(makePickup(e.x + rand(-18, 18), e.y + rand(-18, 18), "xp", 6));
               pickups.push(makePickup(e.x + rand(-10, 10), e.y + rand(-10, 10), "regen", 0));
             }
 
-            // orange enemy drops orange combo dot: speed 50% 5s + fire rate 3s
             if (e.kind === "runner") pickups.push(makePickup(e.x + rand(-10, 10), e.y + rand(-10, 10), "orangeCombo", 0));
 
-            // architect wall
             if (e.kind === "architect") walls.push(makeWall(e.x, e.y));
 
             setUi((s) => ({ ...s, kills: s.kills + 1 }));
@@ -1438,7 +1380,6 @@ export default function SignalNoise() {
       }
     }
 
-    // pickups: magnet + collect
     for (let i = pickups.length - 1; i >= 0; i--) {
       const o = pickups[i];
       o.bob += dt * 4.2;
@@ -1475,10 +1416,8 @@ export default function SignalNoise() {
         }
 
         if (o.type === "regen") {
-          // temporary regen surge for 8s
           p.regen += 0.55;
           const end = tMs + 8000;
-          // store as a timed effect by scheduling a removal
           setTimeout(() => {
             playerRef.current.regen = Math.max(0, playerRef.current.regen - 0.55);
           }, 8000);
@@ -1493,7 +1432,6 @@ export default function SignalNoise() {
       }
     }
 
-    // score
     setUi((s) => {
       const score = Math.floor(alive * 10 + s.kills * 8 + s.level * 28);
       if (score > sessionBestRef.current) sessionBestRef.current = score;
@@ -1534,7 +1472,6 @@ export default function SignalNoise() {
 
       ctx.clearRect(0, 0, W, H);
 
-      // grid
       ctx.save();
       ctx.globalAlpha = 0.16;
       ctx.fillStyle = "#0f172a";
@@ -1542,14 +1479,12 @@ export default function SignalNoise() {
       for (let y = 0; y < H; y += 44) ctx.fillRect(0, y, W, 1);
       ctx.restore();
 
-      // vignette
       const vg = ctx.createRadialGradient(W * 0.5, H * 0.5, 80, W * 0.5, H * 0.5, 620);
       vg.addColorStop(0, "rgba(255,255,255,0)");
       vg.addColorStop(1, "rgba(15,23,42,0.10)");
       ctx.fillStyle = vg;
       ctx.fillRect(0, 0, W, H);
 
-      // walls
       for (const w of walls) {
         ctx.fillStyle = "rgba(15,23,42,0.12)";
         ctx.fillRect(w.x, w.y, w.w, w.h);
@@ -1557,7 +1492,6 @@ export default function SignalNoise() {
         ctx.strokeRect(w.x, w.y, w.w, w.h);
       }
 
-      // pickups
       for (const o of pickups) {
         const s = 0.85 + Math.sin(o.bob) * 0.12;
         ctx.beginPath();
@@ -1573,7 +1507,6 @@ export default function SignalNoise() {
         ctx.stroke();
       }
 
-      // bullets
       for (const b of bullets) {
         ctx.beginPath();
         ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
@@ -1581,7 +1514,6 @@ export default function SignalNoise() {
         ctx.fill();
       }
 
-      // enemy shots
       for (const s of enemyShots) {
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
@@ -1589,7 +1521,6 @@ export default function SignalNoise() {
         ctx.fill();
       }
 
-      // turrets
       for (const t0 of turrets) {
         ctx.beginPath();
         ctx.arc(t0.x, t0.y, t0.r, 0, Math.PI * 2);
@@ -1599,7 +1530,6 @@ export default function SignalNoise() {
         ctx.stroke();
       }
 
-      // decoys
       for (const d of decoys) {
         ctx.beginPath();
         ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
@@ -1609,7 +1539,6 @@ export default function SignalNoise() {
         ctx.stroke();
       }
 
-      // enemies + bars
       for (const e of enemies) {
         ctx.beginPath();
         ctx.arc(e.x, e.y, e.r, 0, Math.PI * 2);
@@ -1643,7 +1572,6 @@ export default function SignalNoise() {
         ctx.fillRect(e.x - w / 2, e.y - e.r - 12, w * pct, h);
       }
 
-      // player glow
       const orangeSpeed = t < p.orangeSpeedUntil;
       const orangeFire = t < p.orangeFireUntil;
 
@@ -1655,7 +1583,6 @@ export default function SignalNoise() {
       ctx.arc(p.x, p.y, 62, 0, Math.PI * 2);
       ctx.fill();
 
-      // player
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
       ctx.fillStyle = p.iFrames > 0 ? "rgba(79,70,229,0.65)" : "rgba(15,23,42,0.82)";
@@ -1663,7 +1590,6 @@ export default function SignalNoise() {
       ctx.strokeStyle = "rgba(255,255,255,0.35)";
       ctx.stroke();
 
-      // shield ring
       if (p.shield > 0) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r + 10, 0, Math.PI * 2);
@@ -1673,7 +1599,6 @@ export default function SignalNoise() {
         ctx.lineWidth = 1;
       }
 
-      // pause overlay
       if (paused && phaseRef.current === "play") {
         ctx.fillStyle = "rgba(255,255,255,0.65)";
         ctx.fillRect(0, 0, W, H);
