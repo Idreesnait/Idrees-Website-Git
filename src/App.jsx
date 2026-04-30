@@ -9,6 +9,8 @@ import WritingsEssay from "@/pages/WritingsEssay";
 import Object from "./pages/ObjectFolder";
 import WritingsEssay2 from "@/pages/WritingsEssay2";
 import Daniel from "./pages/Daniel";
+import GazaLivability from "./pages/GazaLivability";
+import ChainsawMan from "./pages/ChainsawMan";
 
 
 
@@ -32,6 +34,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
 
           <Route path="/daniel" element={<Daniel />} />
+          <Route path="/gaza-livability" element={<GazaLivability />} />
+          <Route path="/chainsaw-man" element={<ChainsawMan />} />
         </Routes>
       </BrowserRouter>
     </>

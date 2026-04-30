@@ -9,7 +9,7 @@ const projects = [
   title: "D.A.N.I.E.L. AI Assistant",
   description:
     "A physical voice controlled AI desk assistant built with a Raspberry Pi, button input, microphone, speakers, speech recognition, and text to speech.",
-  image: "/daniel-1.jpeg",
+  image: "/sum.png",
   tags: ["AI", "Raspberry Pi", "Physical Computing"],
   category: "featured",
   demoUrl: "/daniel",
@@ -55,16 +55,28 @@ const projects = [
 
   // ===== MOTION =====
   {
-    id: 1,
-    title: "Chainsaw Man – Fan Animation Practice",
-    description:
-      "My first animation—created by referencing existing Chainsaw Man footage to study timing, motion, and stylizing a new shot inspired by my favorite manga series.",
-    image: "/CSMT.jpg",
-    tags: ["Motion", "2d Animation"],
-    category: "motion",
-    demoUrl: "/CSM.mov",
-    githubUrl: "",
-  },
+  id: 600,
+  title: "Livability in Gaza Explainer Video",
+  description:
+    "An explainer video about the current state of livability in Gaza, combining Procreate frame animation with Adobe After Effects vector motion.",
+  image: "/gaza.png",
+  tags: ["Motion", "Explainer Video", "After Effects"],
+  category: "motion",
+  demoUrl: "/gaza-livability",
+  githubUrl: "",
+},
+
+  {
+  id: 1,
+  title: "Chainsaw Man – Fan Animation Practice",
+  description:
+    "My first animation—created by referencing existing Chainsaw Man footage to study timing, motion, and stylizing a new shot inspired by my favorite manga series.",
+  image: "/CSMT.jpg",
+  tags: ["Motion", "2d Animation"],
+  category: "motion",
+  demoUrl: "/chainsaw-man",
+  githubUrl: "",
+},
   {
     id: 2,
     title: "Brain Predictability (Animation)",
