@@ -91,6 +91,17 @@ const projects = [
 
   // ===== UI / UX =====
   {
+    id: 700,
+    title: "Game Night — Jeopardy Studio",
+    description:
+      "A custom Jeopardy maker for game nights with friends. Build your own boards, host on the big screen, control the game from your phone, and let everyone buzz in.",
+    image: "/jeopardy-cover.svg",
+    tags: ["UI/UX", "React", "Multiplayer"],
+    category: "ui/ux",
+    demoUrl: "/jeopardy",
+    githubUrl: "",
+  },
+  {
     id: 3,
     title: "Buff Portal – Homepage Redesign (Figma)",
     description:

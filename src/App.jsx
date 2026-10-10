@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { NotFound } from "./pages/NotFound";
@@ -11,6 +12,7 @@ import WritingsEssay2 from "@/pages/WritingsEssay2";
 import Daniel from "./pages/Daniel";
 import GazaLivability from "./pages/GazaLivability";
 import ChainsawMan from "./pages/ChainsawMan";
+const Jeopardy = lazy(() => import("./pages/Jeopardy"));
 
 
 
@@ -36,6 +38,7 @@ function App() {
           <Route path="/daniel" element={<Daniel />} />
           <Route path="/gaza-livability" element={<GazaLivability />} />
           <Route path="/chainsaw-man" element={<ChainsawMan />} />
+          <Route path="/jeopardy/*" element={<Suspense fallback={<div role="status" style={{ minHeight: "100vh", background: "#101019", color: "#e6d9ff", display: "grid", placeItems: "center" }}>Getting game night ready…</div>}><Jeopardy /></Suspense>} />
         </Routes>
       </BrowserRouter>
     </>
