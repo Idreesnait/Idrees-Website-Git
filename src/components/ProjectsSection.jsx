@@ -3,6 +3,17 @@ import { cn } from "@/lib/utils";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 
 const projects = [
+  // ===== CAPSTONE =====
+  {
+    id: 800,
+    title: "Motion Tracking Software",
+    description: "A browser-based motion lab for our capstone: print ArUco markers, analyze video or a live camera, calibrate distances, and compare repeatable trials.",
+    image: "/capstone-motion.svg",
+    tags: ["CAPSTONE", "Motion Tracking", "Feasibility"],
+    category: "CAPSTONE",
+    demoUrl: "/capstone/motion-tracking",
+    githubUrl: "",
+  },
   // ===== FEATURED =====
   {
   id: 500,
@@ -264,6 +275,7 @@ const projects = [
 
 const categories = [
   "featured",
+  "CAPSTONE",
   "ui/ux",
   "motion",
   "3d",
@@ -311,6 +323,14 @@ const filteredProjects = projects.filter((p) => {
             </button>
           ))}
         </div>
+
+        {activeCategory === "CAPSTONE" && (
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-bold mb-2">CAPSTONE</h3>
+            <p className="text-muted-foreground text-sm mb-3">Tools, prototypes, and feasibility tests for our modular prosthetic project.</p>
+            <a href="/capstone" className="text-primary inline-flex items-center gap-2">Open the CAPSTONE hub <ArrowRight size={16} /></a>
+          </div>
+        )}
 
         <p className="text-center text-xs text-muted-foreground mb-12">
           more projects on the way - added weekly 
@@ -367,9 +387,11 @@ const filteredProjects = projects.filter((p) => {
                         (project.demoUrl.startsWith("/") ? (
                           <a
                             href={project.demoUrl}
+                            aria-label={`Open ${project.title || "project"}`}
                             className="text-foreground/80 hover:text-primary transition-colors duration-300"
                           >
                             <ExternalLink size={20} />
+                            {project.category === "CAPSTONE" && <span className="inline-block mt-2 text-sm">Open Motion Tracking Software</span>}
                           </a>
                         ) : (
                           <a

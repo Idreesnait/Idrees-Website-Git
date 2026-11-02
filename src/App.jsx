@@ -13,6 +13,8 @@ import Daniel from "./pages/Daniel";
 import GazaLivability from "./pages/GazaLivability";
 import ChainsawMan from "./pages/ChainsawMan";
 const Jeopardy = lazy(() => import("./pages/Jeopardy"));
+const Capstone = lazy(() => import("./pages/Capstone"));
+const MotionTracking = lazy(() => import("./pages/MotionTracking"));
 
 
 
@@ -32,6 +34,8 @@ function App() {
           <Route path="/writings/directed-bias" element={<WritingsEssay />} />
           <Route path="/writings/essay-2" element={<WritingsEssay2 />} />
           <Route path="/object" element={<Object />} />
+          <Route path="/capstone" element={<Suspense fallback={<div role="status">Loading CAPSTONE…</div>}><Capstone /></Suspense>} />
+          <Route path="/capstone/motion-tracking" element={<Suspense fallback={<div role="status">Loading motion tracking…</div>}><MotionTracking /></Suspense>} />
 
           <Route path="*" element={<NotFound />} />
 
