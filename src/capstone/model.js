@@ -334,9 +334,6 @@ export function graphSVG(
     svgContent += `<path d="${d}" fill="none" stroke="${colors[i]}" stroke-width="2.5"/>`;
     svgContent += `<text x="${540 + i * 95}" y="26" fill="${colors[i]}" font-size="12">${escapeText(k === "dx" ? "ΔX →" : k === "dy" ? "ΔY ↑" : k)}</text>`;
   });
-  if (!values.length)
-    svgContent +=
-      '<text x="390" y="144" text-anchor="middle" fill="#666666" font-size="14">Your recorded motion will appear here</text>';
   svgContent +=
     '<text x="390" y="277" text-anchor="middle" fill="#666666" font-size="11">Time from first sample (seconds)</text>';
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 288" width="760" height="288" role="img" aria-label="${escapeText(title)}" font-family="system-ui, sans-serif">${svgContent}</svg>`;

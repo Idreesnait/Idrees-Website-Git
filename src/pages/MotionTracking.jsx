@@ -15,7 +15,6 @@ import {
   FlaskConical,
   ChevronRight,
   X,
-  CircleHelp,
   Video,
   FileSpreadsheet,
   Image,
@@ -226,7 +225,7 @@ export default function MotionTracking() {
     tracker.paint(tracker.currentMarkers, tracker.frames.at(-1)?.t || 0);
     tracker.notify();
     setMessage(
-      `Calibrated: ${formatNumber(1 / scale)} pixels = 1 cm. Keep the camera fixed and motion in the reference plane.`,
+      `Calibrated: ${formatNumber(1 / scale)} px / cm.`,
     );
   }
 
@@ -288,7 +287,7 @@ export default function MotionTracking() {
     try {
       localStorage.setItem(TRIAL_STORAGE_KEY, JSON.stringify(nextTrials));
       setMessage(
-        "Trial saved here. Download the CSV when you want to keep or share it.",
+        "Trial saved.",
       );
     } catch {
       setError(
@@ -331,18 +330,13 @@ export default function MotionTracking() {
           <ArrowLeft size={16} /> CAPSTONE
         </Link>
         <span>
-          Idrees + Abram <span className="mt-divider">/</span> motion test
+          Idrees + Abram <span className="mt-divider">·</span> motion test
         </span>
       </nav>
       <div className="mt-wrap">
         <header className="mt-header">
           <div>
             <h1>Motion tracking</h1>
-            <p>
-              Track ArUco markers from a video or webcam, measure movement, and
-              compare trials.
-            </p>
-            <div className="mt-local">Video stays on your device.</div>
           </div>
         </header>
         <div className="mt-tabbar" role="tablist" aria-label="Motion workspace">
@@ -358,9 +352,6 @@ export default function MotionTracking() {
               {label}
             </button>
           ))}
-          <div className="mt-dictionary">
-            {DICTIONARY} <span>250 IDs</span>
-          </div>
         </div>
         {error && (
           <div className="mt-alert error" role="alert">
@@ -457,23 +448,6 @@ export default function MotionTracking() {
                     preload="auto"
                     className="mt-source-video"
                   />
-                  {capture.source === "none" && (
-                    <div className="mt-empty">
-                      <h2>Add a video to start</h2>
-                      <p>
-                        Upload a clip or open your camera.
-                        <br />
-                        No footage yet? Try the demo.
-                      </p>
-                      <button
-                        disabled={busy || !validMarkerId}
-                        className="mt-text-link"
-                        onClick={() => runAction(() => tracker.demo())}
-                      >
-                        See a marker in motion <ArrowUpRight size={16} />
-                      </button>
-                    </div>
-                  )}
                   {pickPoints && (
                     <div className="mt-pick-hint">
                       Click{" "}
@@ -537,7 +511,7 @@ export default function MotionTracking() {
                                 ? "Stopped · partial data"
                                 : capture.mode === "loading"
                                   ? "Loading…"
-                                  : "Ready"}
+                                  : ""}
                     </span>
                   </div>
                   <span>{capture.count} samples</span>
@@ -630,10 +604,6 @@ export default function MotionTracking() {
                     __html: chart,
                   }}
                 />
-                <p className="mt-chart-caption">
-                  Relative to the first detection. Gaps mean the marker was not
-                  detected. Y is positive upward.
-                </p>
               </div>
             </div>
             <aside className="mt-sidebar">
@@ -672,10 +642,6 @@ export default function MotionTracking() {
                     </select>
                   </label>
                 </div>
-                <p className="mt-small">
-                  All visible IDs are tracked. This ID controls the graph and
-                  trial result. Give each object a different marker.
-                </p>
                 <button
                   className="mt-text-link"
                   onClick={() => setTab("markers")}
@@ -768,11 +734,6 @@ export default function MotionTracking() {
                     Use marker
                   </button>
                 </div>
-                <p className="mt-small">
-                  Measure the printed black square, excluding its white margin.
-                  Keep it flat, facing the camera, and at the same depth as the
-                  movement.
-                </p>
               </div>
               <div className="mt-card">
                 <div className="mt-card-title">
@@ -828,37 +789,9 @@ export default function MotionTracking() {
                     Annotated video
                   </button>
                 </div>
-                <p className="mt-small">
-                  Video export replays your clip in real time, without audio.
-                  Keep this tab visible. Data and graphs use the recorded
-                  analysis samples.
-                </p>
               </div>
             </aside>
           </div>
-          <div className="mt-detection-row">
-            <span>
-              <Crosshair size={16} /> Markers in this frame
-            </span>
-            {capture.currentMarkers.length ? (
-              capture.currentMarkers.map((m, i) => (
-                <span
-                  className={`mt-marker-chip ${m.id === Number(markerId) ? "selected" : ""}`}
-                  key={`${m.id}-${i}`}
-                >
-                  ID {m.id} · {formatNumber(markerGeometry(m).x, 0)},{" "}
-                  {formatNumber(markerGeometry(m).y, 0)} px
-                </span>
-              ))
-            ) : (
-              <span>No marker detected in the current frame</span>
-            )}
-          </div>
-          <p className="mt-footnote">
-            <CircleHelp size={14} /> 2D feasibility measurements. Camera
-            movement, perspective, blur, and depth changes affect the result.
-            This tool does not measure 3D joint angles or validate a prosthetic.
-          </p>
         </section>
 
         <section
@@ -870,10 +803,6 @@ export default function MotionTracking() {
           <div className="mt-section-heading">
             <div>
               <h2>Print your markers</h2>
-              <p>
-                Use a different ID for each object. These {DICTIONARY} markers
-                work with this tracker.
-              </p>
             </div>
             <button
               className="mt-button primary"
@@ -917,8 +846,7 @@ export default function MotionTracking() {
             <div>
               <strong>Print at 100% / actual size</strong>
               <p>
-                Turn off “fit to page.” Check the black square with a ruler
-                after printing.
+                Keep the white border. Verify size with a ruler.
               </p>
             </div>
           </div>
@@ -958,29 +886,6 @@ export default function MotionTracking() {
               ))}
             </div>
           )}
-          <div className="mt-two-notes">
-            <div>
-              <h3>Keep the white border</h3>
-              <p>
-                Print on matte white paper, mount flat on card, and leave the
-                white margin intact. Avoid glossy tape over the pattern.
-              </p>
-            </div>
-            <div>
-              <h3>Match the dictionary</h3>
-              <p>
-                Use unique IDs for different objects. An ID from a different
-                dictionary is a different marker.{" "}
-                <a
-                  href="https://damianofalcioni.github.io/js-aruco2/samples/marker-creator/marker-creator.html"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Alternative marker generator ↗
-                </a>
-              </p>
-            </div>
-          </div>
         </section>
 
         <section
@@ -992,10 +897,6 @@ export default function MotionTracking() {
           <div className="mt-section-heading">
             <div>
               <h2>Check it against the ruler</h2>
-              <p>
-                Compare endpoint displacement with a distance you measured using
-                a ruler.
-              </p>
             </div>
             <button
               className="mt-button"
@@ -1094,9 +995,7 @@ export default function MotionTracking() {
                 {capture.source === "demo" ? "demo " : ""}trial
               </button>
               <p className="mt-small">
-                A complete trial needs at least 10 samples and detections at
-                both endpoints. Default limits (1 cm, 90%) are editable project
-                targets, not clinical standards.
+                Requires 10 samples and both endpoints detected.
               </p>
             </div>
             <div>
@@ -1186,13 +1085,6 @@ export default function MotionTracking() {
                           <div className="mt-trials-empty">
                             <FlaskConical size={32} strokeWidth={1} />
                             <h3>No trials saved yet</h3>
-                            <p>
-                              Record a calibrated movement, enter the actual
-                              travel,
-                              <br />
-                              then save the trial. Repeat to see how consistent
-                              it is.
-                            </p>
                             <button
                               className="mt-text-link"
                               onClick={() => setTab("track")}
@@ -1207,19 +1099,9 @@ export default function MotionTracking() {
                 </table>
               </div>
               <p className="mt-small">
-                Saved in this browser (up to 200 trials). Export CSV to keep a
-                copy or share with Abram. Demo and incomplete trials are
-                excluded from the summary. CSV includes the limits used for each
-                result.
+                Saved in this browser. Demo and incomplete trials excluded from
+                summary.
               </p>
-              <div className="mt-note">
-                <strong>Displacement ≠ path length</strong>
-                <p>
-                  Move once from A to B and stop. The comparison uses the
-                  straight-line distance between the first and last detected
-                  positions, not the distance traveled along a curved path.
-                </p>
-              </div>
             </div>
           </div>
         </section>
@@ -1394,18 +1276,11 @@ export default function MotionTracking() {
             >
               OpenCV marker guide <ArrowUpRight size={14} />
             </a>
-            <a
-              href="https://opensource.org/license/mit"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open-source licensing <ArrowUpRight size={14} />
-            </a>
           </div>
         </section>
         <footer className="mt-footer">
           <span>
-            CAPSTONE <span className="mt-divider">/</span> Motion Tracking
+            CAPSTONE <span className="mt-divider">·</span> Motion Tracking
             Software
           </span>
           <span>Idrees Nait + Abram · ATLAS</span>
