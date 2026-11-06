@@ -7,7 +7,7 @@ const projects = [
   {
     id: 800,
     title: "Motion Tracking Software",
-    description: "A browser-based motion lab for our capstone: print ArUco markers, analyze video or a live camera, calibrate distances, and compare repeatable trials.",
+    description: "Our capstone motion test. Print a marker, film it moving, and compare the tracked distance with a ruler. Works with video clips or a webcam.",
     image: "/capstone-motion.svg",
     tags: ["CAPSTONE", "Motion Tracking", "Feasibility"],
     category: "CAPSTONE",
